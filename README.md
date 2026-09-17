@@ -1,135 +1,307 @@
-# Ethical Hacking and Penetration Testing
+Ethical Hacking and Penetration Testing
+=======================================
 
-This repository contains my IT7301 Ethical Hacking project, demonstrating a controlled penetration testing exercise conducted in an isolated virtual laboratory environment.
+Project Overview
+----------------
 
-The project follows the ethical hacking lifecycle from reconnaissance and information gathering through scanning, enumeration, vulnerability assessment, gaining access, maintaining access, covering tracks, and finally documenting findings and security recommendations.
+This repository contains my **IT7301 – Ethical Hacking** group project at **Bahrain Polytechnic**.
 
-# Project Overview
+The project demonstrates a complete **penetration testing lifecycle** against **Metasploitable 2**, an intentionally vulnerable Linux system, within an isolated virtual laboratory.
 
-The main target used in the laboratory was Metasploitable 2, a deliberately vulnerable Linux virtual machine designed for penetration testing and security training.
+The assessment covered reconnaissance, scanning, enumeration, vulnerability assessment, controlled exploitation, post-exploitation, covering tracks, risk assessment, security policies, and defensive recommendations.
 
-The laboratory environment was built using Oracle VirtualBox with a NAT Network to provide controlled communication between the virtual machines. Kali Linux was used as the primary penetration testing system.
+Methodology
+-----------
+```
+Footprinting
+     ↓
+Scanning
+     ↓
+Enumeration
+     ↓
+Vulnerability Scanning
+     ↓
+Gaining Access
+     ↓
+Maintaining Access
+     ↓
+Covering Tracks
+     ↓
+Risk Assessment
+     ↓
+Security Policies
+     ↓
+Defensive Recommendations
+```
+Laboratory Environment
+----------------------
 
-# Ethical Hacking Methodology
+The laboratory was built using **Oracle VirtualBox** with a controlled **NAT Network**.
 
-The project covers the following stages:
+ComponentPurposeKali LinuxPenetration TestingMetasploitable 2Vulnerable TargetOracle VirtualBoxVirtualizationNAT NetworkIsolated Communication
 
-- Footprinting
-- Scanning
-- Enumeration
-- Vulnerability Scanning
-- Gaining Access
-- Maintaining Access
-- Covering Tracks
-- Penetration Testing Report
-- Security Policy Development
-- Security Recommendations
+Tools & Technologies
+--------------------
 
-# Tools and Technologies
+*   **Kali Linux**
+    
+*   **Metasploitable 2**
+    
+*   **Oracle VirtualBox**
+    
+*   **Nmap**
+    
+*   **Angry IP Scanner**
+    
+*   **Metasploit Framework**
+    
+*   **Medusa**
+    
+*   **Greenbone Enterprise**
+    
+*   **Wireshark**
+    
+*   **Scapy**
+    
+*   **Linux / Windows**
+    
 
-- Kali Linux
-- Metasploitable 2
-- Oracle VirtualBox
-- Nmap
-- Angry IP Scanner
-- Metasploit Framework
-- Greenbone Enterprise
-- Wireshark
-- Scapy
-- Linux
-- Windows
-- NAT Network
+Reconnaissance & Enumeration
+----------------------------
 
-# Footprinting
+### Footprinting
 
-The footprinting stage focused on gathering information about selected targets using reconnaissance techniques.
+Information gathering was performed using:
 
-Examples included DNS and domain information gathering using tools such as:
+*   nslookup
+    
+*   WHOIS
+    
+*   DNS reconnaissance
+    
 
-- nslookup
-- WHOIS
-- DNS reconnaissance
+### Scanning
 
-# Scanning
+Network and service discovery was performed using **Nmap** and **Angry IP Scanner** to identify hosts, open ports, running services, and potential attack surfaces.
 
-Network and service scanning techniques were performed to identify accessible hosts, open ports, running services, and potential attack surfaces.
+### Enumeration
 
-Nmap was used extensively for network and service discovery.
+Discovered services were further investigated, including:
 
-# Enumeration
+*   SSH
+    
+*   FTP
+    
+*   SMB
+    
+*   RSH
+    
+*   DistCC
+    
+*   Web services
+    
 
-Enumeration was performed to gather additional information from discovered services, including web services, FTP, SMB, and other network services.
+Vulnerability Assessment
+------------------------
 
-The objective was to identify configuration weaknesses and information that could support later security assessment activities.
+**Greenbone Enterprise** was used to identify known vulnerabilities and insecure configurations within the controlled laboratory environment.
 
-# Vulnerability Scanning
+The findings were then used to support the exploitation and risk assessment stages.
 
-Vulnerability assessment was performed using vulnerability scanning tools to identify known weaknesses and insecure configurations within the controlled laboratory environment.
+Gaining Access
+==============
 
-Greenbone Enterprise was used as part of the vulnerability assessment process.
+The project demonstrated multiple controlled attack scenarios against Metasploitable 2.
 
-# Gaining Access
+### SSH Authentication Attack
 
-The project demonstrated controlled exploitation of vulnerabilities identified during earlier stages of the assessment.
+A controlled password attack was performed against the SSH service using **Medusa**, demonstrating the security risks associated with weak/default authentication.
 
-Metasploit and other penetration testing techniques were used within the isolated laboratory environment to demonstrate the impact of vulnerable services and configurations.
+### vsftpd Backdoor
 
-# Maintaining Access
+The vulnerable **vsftpd 2.3.4** service was assessed using the **Metasploit Framework**.
 
-Post-exploitation activities were documented to demonstrate how an attacker could maintain access to a compromised system in a controlled testing environment.
+**CVE:** CVE-2011-2523
 
-# Covering Tracks
+The exploitation demonstrated how a vulnerable service can result in remote shell access.
 
-The project also examined the security implications of attacker attempts to reduce or remove evidence of activity.
+### DistCC Remote Command Execution
 
-This stage was studied from a defensive perspective to understand the importance of logging, monitoring, and security auditing.
+The exposed DistCC service was assessed using Metasploit.
 
-# Security Policies
+**CVE:** CVE-2004-2687
 
-Security policies were developed based on the findings identified during the penetration testing process.
+The exercise demonstrated remote command execution without normal authentication.
 
-The project included policies related to:
+### RSH Authentication Weakness
 
-- System Protection Management
-- Log Management
-- Access Management
-- Internal Network Access Management
+The legacy RSH service was assessed using Metasploit.
 
-# Defensive Recommendations
+**CVE:** CVE-1999-0651
 
-The project identified several defensive measures, including:
+The exercise demonstrated the risks of insecure trust-based authentication and legacy remote access protocols.
 
-- System hardening
-- Removing outdated services
-- Restricting unnecessary network services
-- Strengthening authentication
-- Continuous vulnerability assessment
-- Security logging and monitoring
-- Regular system reviews
-- Clearly defined security policies
+Maintaining Access & Privilege Escalation
+=========================================
 
-# Laboratory Environment
+Post-exploitation activities were performed to verify access and privileges.
 
-All penetration testing activities were conducted within an isolated virtual laboratory environment.
+The assessment demonstrated how excessive privileges and insecure configurations can allow an attacker with an initial foothold to obtain administrative-level access.
 
-The lab used Oracle VirtualBox and a NAT Network, with Kali Linux acting as the primary testing machine and Metasploitable 2 serving as the intentionally vulnerable target.
+Commands such as:
 
-# Project Report
+Plain textANTLR4BashCC#CSSCoffeeScriptCMakeDartDjangoDockerEJSErlangGitGoGraphQLGroovyHTMLJavaJavaScriptJSONJSXKotlinLaTeXLessLuaMakefileMarkdownMATLABMarkupObjective-CPerlPHPPowerShell.propertiesProtocol BuffersPythonRRubySass (Sass)Sass (Scss)SchemeSQLShellSwiftSVGTSXTypeScriptWebAssemblyYAMLXML`   whoami  id   `
 
-The complete project report is available below:
+were used to verify the obtained privileges.
 
-[Download the IT7301 Ethical Hacking Project Report](IT7301-Ethical-Hacking-Penetration-Testing-Report.docx)
+Covering Tracks
+===============
 
-# Academic Context
+The project examined how local shell history can be removed or modified after compromise.
 
-Course: IT7301 – Ethical Hacking
+This was studied from a **defensive and forensic perspective**, highlighting the importance of:
 
-Institution: Bahrain Polytechnic
+*   Centralized logging
+    
+*   SIEM
+    
+*   Real-time monitoring
+    
+*   Tamper-resistant logs
+    
+*   Audit trails
+    
 
-Assessment Type: Group Project
+Risk Assessment
+===============
 
-# Disclaimer
+The project included a risk assessment based on likelihood and impact.
 
-This project was conducted for academic and cybersecurity learning purposes in a controlled and isolated laboratory environment.
+FactorAssessmentLikelihoodHighImpactHighOverall RiskHigh
 
-The techniques demonstrated in this project are intended for authorized security testing and educational use only.
+Security Policies
+=================
+
+Based on the penetration testing findings, four security policies were developed:
+
+### Access Management Policy
+
+Focuses on secure authentication, authorization, least privilege, and privileged access.
+
+### Internal Access Control Policy
+
+Focuses on restricting unnecessary and insecure internal network services.
+
+### System Protection Management Policy
+
+Focuses on system hardening, secure configurations, patching, and vulnerability management.
+
+### Log Management Policy
+
+Focuses on centralized logging, monitoring, protection of logs, and security alerts.
+
+Defensive Recommendations
+=========================
+
+The project recommended:
+
+*   System hardening
+    
+*   Removing outdated and unnecessary services
+    
+*   Strong authentication
+    
+*   Least privilege
+    
+*   Network access restrictions
+    
+*   Regular vulnerability assessments
+    
+*   Security logging and monitoring
+    
+*   SIEM implementation
+    
+*   Regular configuration reviews
+    
+*   Clearly defined security policies
+    
+
+Key Findings
+============
+
+AreaFindingImpactAuthenticationWeak/default credentialsUnauthorized accessFTPVulnerable vsftpd serviceRemote shell accessDistCCInsecure exposed serviceRemote command executionRSHLegacy authenticationAdministrative accessPrivilegesExcessive privilegesRoot-level accessLoggingLocal history can be removedReduced forensic visibility
+
+My Contribution
+===============
+
+My contribution to the group project included:
+
+*   **Enumeration**
+    
+*   **Gaining Access**
+    
+*   **Maintaining Access / Post-Exploitation**
+    
+*   Technical documentation and evidence
+    
+
+**Workload:** 25%**Completion:** 100%
+
+Key Learning Outcomes
+=====================
+
+This project provided practical experience in:
+
+*   Ethical hacking methodology
+    
+*   Network reconnaissance
+    
+*   Nmap scanning
+    
+*   Service enumeration
+    
+*   Vulnerability assessment
+    
+*   Metasploit
+    
+*   Authentication attacks
+    
+*   Post-exploitation
+    
+*   Privilege escalation
+    
+*   Risk assessment
+    
+*   Security policies
+    
+*   System hardening
+    
+*   Security monitoring
+    
+
+Project Report
+==============
+
+The complete academic report contains the detailed methodology, screenshots, evidence, vulnerability analysis, risk assessment, security policies, recommendations, and references.
+
+[**Download the IT7301 Ethical Hacking Project Report**](IT7301-Ethical-Hacking-Penetration-Testing-Report.docx)
+
+Academic Context
+================
+```
+Category            Details
+Course              IT7301 – Ethical Hacking
+Institution         Bahrain Polytechnic
+Assessment          Group Project
+Primary Platform    Kali Linux
+Target              Metasploitable 2
+Environment         Oracle VirtualBox
+```
+Disclaimer
+==========
+
+> **Educational and Authorized Use Only**
+> 
+> This project was conducted exclusively for academic and cybersecurity learning purposes within an isolated virtual laboratory.
+> 
+> The techniques demonstrated are intended only for authorized security testing. Unauthorized access, exploitation, or credential attacks against systems without permission may be illegal and harmful.
